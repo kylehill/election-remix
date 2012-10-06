@@ -1,7 +1,7 @@
 var filters = {
   all: function(data, vsDemDelta) {
     for (var state in data) {
-      this.sticker(data[state], vsDemDelta);
+      data[state] = this.sticker(data[state], vsDemDelta);
     }
     return data;
   },
@@ -28,6 +28,14 @@ var filters = {
     return data;
   },
   
+  demographics: function(data, characteristic, vsDemDelta) {
+    for (var state in data) {
+      var modDelta = vsDemDelta * (data[state].demo[characteristic] || 0);
+      data[state] = this.sticker(data[state], modDelta);
+    }
+    return data;
+  },
+  
   state: function(data, state, vsDemDelta) {
     data[state] = this.sticker(data[state], vsDemDelta);
     return data;
@@ -40,5 +48,9 @@ var filters = {
       state.districts[d] = this.sticker(state.districts[d], delta);
     }
     return state;
+  },
+  
+  smartSticker: function(state, delta, characteristic) {
+    
   }
 }

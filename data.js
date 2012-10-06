@@ -12,6 +12,7 @@ var massage = function(data) {
       dem: stateData[8],
       rep: stateData[9],
       moe: stateData[31],
+      demo: {},
       districts: []
     }
     if (_.isNull(stateData[32])) {
@@ -24,4 +25,27 @@ var massage = function(data) {
   }
   
   return data;
-}
+};
+
+var applyDemographics = function(data, demographics) {
+  for (var characteristic in demographics) {
+    var group = demographics[characteristic];
+    if (group.convert) {
+      var newGroup = {};
+      for (var s in group) {
+        if (s !== "convert") {
+          var initials = _.find(data, function(i){ return i.name === s }).initials;
+          newGroup[initials] = group[s];
+        }
+      }
+      group = newGroup;
+    }
+    for (var s in group) {
+      data[s].demo[characteristic] = group[s];
+    }
+  }
+  for (var state in data) {
+    data[state].demo.reg_ind = (1 - (data[state].demo.reg_rep + data[state].demo.reg_dem));
+  }
+  return data;
+};
