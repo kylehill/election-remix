@@ -11,11 +11,28 @@
   <script src="libs/underscore-min.js"></script>
   <script src="libs/jstat-1.0.0.min.js"></script>
   
-  <!-- Load the data -->
+  <!-- Load the data file -->
+  <script>
+    var eg2012 = {};
+    eg2012.cards = {};
+    eg2012.cards["38-fivethirtyeight-ccol-top"] = {
+      load:function(data) {
+        eg2012.data = data;
+      }
+    }
+  </script>
+  <script src="http://elections.nytimes.com/2012/cards/38-fivethirtyeight-ccol-top.js"></script>
   <script src="data.js"></script>
+  <script src="montecarlo.js"></script>
+  
+  <!-- Ready to rock -->
   <script>
     $(document).on("ready", function(){
-      alert(data.loaded)
+      // Massage the data
+      var data = massage(eg2012.data);
+      // Make a starter projection
+      var projected = simulate(data);
+      console.log(projected);
     });
   </script>
 </body>
