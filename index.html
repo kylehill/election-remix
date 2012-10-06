@@ -23,17 +23,58 @@
   </script>
   <script src="http://elections.nytimes.com/2012/cards/38-fivethirtyeight-ccol-top.js"></script>
   <script src="data.js"></script>
+  <script src="filters.js"></script>
   <script src="montecarlo.js"></script>
   
   <!-- Ready to rock -->
   <script>
+    var originalData, filterSet = [];
+    var rawData;
+    
     $(document).on("ready", function(){
       // Massage the data
-      var data = massage(eg2012.data);
+      originalData = massage(eg2012.data);
+      rawData = JSON.stringify(originalData);
+      
       // Make a starter projection
-      var projected = simulate(data);
-      console.log(projected);
+      var projected = simulate(originalData);
+      console.log("original data, projected", projected);
+      
+      // Apply a test filter
+      addUniversalFilter("all", -1);
+      addUniversalFilter("mccain08", 1);
+      addUniversalFilter("obama08", .5);
+      applyFilters();
+      
+      var newData = simulate(applyFilters());
+      console.log("new data, projected", newData);
+      
     });
+    
+    var addUniversalFilter = function(flag, vsDemDelta){
+      filterSet.push({type: "u", flag: flag, delta: vsDemDelta});
+    };
+    
+    var addStateFilter = function(state, vsDemDelta){
+      filterSet.push({type: "s", state: state, delta: vsDemDelta});
+    };
+    
+    var applyFilters = function(){
+      var currentData = JSON.parse(rawData);
+      _.each(filterSet, function(f){
+        switch (f.type) {
+          case "u":
+            currentData = filters[f.flag](currentData, f.delta);
+            break;
+          case "s":
+            currentData = filters.state(currentData, f.state, f.delta);
+            break;
+          default:
+            break;
+        }
+      });
+      return currentData;
+    };
   </script>
 </body>
 </html>

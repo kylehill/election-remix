@@ -11,7 +11,7 @@ var simulate = function(data, runs) {
   };
   
   for (var state in data) {
-    projected.states[data[state].initials] = { wDem: 0, wRep: 0 };
+    projected.states[data[state].initials] = { wDem: 0, wRep: 0, vsDem: data[state].dem, vsRep: data[state].rep };
     
     for (var district in data[state].districts) {
       projected.states[data[state].districts[district].initials] = { wDem: 0, wRep: 0 };
@@ -79,8 +79,6 @@ var simulate = function(data, runs) {
     wDem: (projected.wDem / CONST_runs), 
     wRep: (projected.wRep / CONST_runs), 
     wTied: (projected.tied / CONST_runs),
-    states: _.each(projected.states, function(s){
-      return { wDem: (s.wDem/CONST_runs), wRep: (s.wRep/CONST_runs) };
-    })
+    states: projected.states
   };
 }
