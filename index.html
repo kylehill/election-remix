@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>ElectionRemix.com</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -38,15 +39,15 @@
           <tbody>
             <tr class="dem">
               <td class="name">Obama</td>
-              <td class="well"><div id="dem_ev"></div></td>
-              <td class="well"><div id="dem_wp"></div></td>
-              <td class="well"><div id="dem_pv"></div></td>
+              <td class="ce"><div id="dem_ev"></div></td>
+              <td class="ce"><div id="dem_wp"></div></td>
+              <td class="ce"><div id="dem_pv"></div></td>
             </tr>
             <tr class="rep">
               <td class="name">Romney</td>
-              <td class="well"><div id="rep_ev"></div></td>
-              <td class="well"><div id="rep_wp"></div></td>
-              <td class="well"><div id="rep_pv"></div></td>
+              <td class="ce"><div id="rep_ev"></div></td>
+              <td class="ce"><div id="rep_wp"></div></td>
+              <td class="ce"><div id="rep_pv"></div></td>
             </tr>
           </tbody>
         </table>
@@ -63,16 +64,40 @@
         
         <div class="filter-group" id="intro">
           <p>
-            <span id="span-about">Who made this?</span>
+            <span id="span-what">What is this?</span>
+            <span id="span-about" style="float:right">Who made this?</span>
           </p>
           <div id="npr">
                       <strong>Latest news from NPR:</strong>
           </div>
         </div>
         
+        <div class="filter-group" id="what">
+          <p>
+            <strong>What the hell is this?</strong> Good question!<br/>
+            <span style="color:purple; font-weight:bold">ElectionRemix</span> is a tool that lets
+            everyone have access to the same election modeling techniques used by media and political
+            professionals. It lets you take your predictions and assumptions about what's happened in
+            the Presidential race and apply them instantly to the electoral map, and see how it moves
+            the projected national vote and electoral college outcomes.
+          </p>
+          <p>
+            <strong>Getting Started?</strong> Set up some filters and see what happens if:
+            <ul>
+              <li>... there's a two point swing to Romney nationwide</li>
+              <li>... there's a four point swing to Obama among Hispanics</li>
+              <li>... there's a six point swing to Romney in Ohio</li>
+            </ul>
+          </p>
+          <p>
+            <strong>Hacker Abstract:</strong> Look, it's your very own <a href="http://fivethirtyeight.blogs.nytimes.com" target="_blank">FiveThirtyEight</a>.
+          </p>
+          
+        </div>
+        
         <div class="filter-group" id="about">
           <p>
-            I'm Kyle Hill (<a target="_blank" href="http://github.com/kylehill">GitHub</a>, <a target="_blank" href="http://twitter.com/kylehill">Twitter</a>, <a href="mailto:kylehill@gmail.com">Email</a>.) and I slapped together ElectoralRemix for the 2012 Washington Post <a href="http://electionhackathon.com">
+            I'm Kyle Hill (<a target="_blank" href="http://github.com/kylehill">GitHub</a>, <a target="_blank" href="http://twitter.com/kylehill">Twitter</a>, <a href="mailto:kylehill@gmail.com">Email</a>) and I slapped together ElectoralRemix for the 2012 Washington Post <a href="http://electionhackathon.com">
             Election Hackathon</a>. It's pretty quick and rather dirty, but I'll can put some UX
             spit-shine on it if there's any interest.
           </p>
@@ -90,14 +115,14 @@
           <div class="filter">
             <div class="outside"><div class="inside">Everyone!</div></div>
             <div class="trigger" data-trigger="all" data-style="universal">
-              <div class="label dem">
+              <div class="lbl dem">
 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -106,13 +131,13 @@
           <div class="filter">
             <div class="outside" style="background-color:red"><div class="inside">States voting for McCain in 2008</div></div>
             <div class="trigger" data-trigger="mccain08" data-style="universal">
-              <div class="label dem">
+              <div class="lbl dem">
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -122,14 +147,14 @@
           <div class="filter">
             <div class="outside" style="background-color:blue"><div class="inside">States voting for Obama in 2008</div></div>
             <div class="trigger" data-trigger="obama08" data-style="universal">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -142,14 +167,14 @@
           <div class="filter">
             <div class="outside"  style="background-color:lightcoral"><div class="inside">Registered Republicans</div></div>
             <div class="trigger" data-trigger="reg_rep" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -158,13 +183,13 @@
           <div class="filter">
             <div class="outside" style="background-color:paleturquoise"><div class="inside">Registered Democrats</div></div>
             <div class="trigger" data-trigger="reg_dem" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -174,14 +199,14 @@
           <div class="filter">
             <div class="outside" style="background-color:lightgreen"><div class="inside">Independents</div></div>
             <div class="trigger" data-trigger="reg_ind" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -194,14 +219,14 @@
           <div class="filter">
             <div class="outside"  style="background-color:beige"><div class="inside">White</div></div>
             <div class="trigger" data-trigger="white" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -210,13 +235,13 @@
           <div class="filter">
             <div class="outside" style="background-color:brown"><div class="inside">African-American</div></div>
             <div class="trigger" data-trigger="black" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -226,14 +251,14 @@
           <div class="filter">
             <div class="outside" style="background-color:tan"><div class="inside">Hispanic/Latino</div></div>
             <div class="trigger" data-trigger="hispanic" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -247,14 +272,14 @@
           <div class="filter">
             <div class="outside"  style="background-color:yellow"><div class="inside">Protestant</div></div>
             <div class="trigger" data-trigger="protestant" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -263,13 +288,13 @@
           <div class="filter">
             <div class="outside" style="background-color:orange"><div class="inside">Catholic</div></div>
             <div class="trigger" data-trigger="catholic" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -279,14 +304,14 @@
           <div class="filter">
             <div class="outside" style="background-color:red"><div class="inside">Mormon</div></div>
             <div class="trigger" data-trigger="mormon" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -295,14 +320,14 @@
           <div class="filter">
             <div class="outside" style="background-color:steelblue"><div class="inside">Jewish</div></div>
             <div class="trigger" data-trigger="judaism" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -315,14 +340,14 @@
           <div class="filter">
             <div class="outside"  style="background-color:black"><div class="inside">Per Capita Income</div></div>
             <div class="trigger" data-trigger="per_capita" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -331,13 +356,13 @@
           <div class="filter">
             <div class="outside" style="background-color:gray"><div class="inside">Poverty Rate</div></div>
             <div class="trigger" data-trigger="poverty" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -347,14 +372,14 @@
           <div class="filter">
             <div class="outside" style="background-color:silver"><div class="inside">Unemployment Rate</div></div>
             <div class="trigger" data-trigger="unemployment" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -367,14 +392,14 @@
           <div class="filter">
             <div class="outside"  style="background-color:lime"><div class="inside">Northeast</div></div>
             <div class="trigger" data-trigger="northeast" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -383,13 +408,13 @@
           <div class="filter">
             <div class="outside" style="background-color:deepskyblue"><div class="inside">South</div></div>
             <div class="trigger" data-trigger="south" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -399,14 +424,14 @@
           <div class="filter">
             <div class="outside" style="background-color:deeppink"><div class="inside">Midwest</div></div>
             <div class="trigger" data-trigger="midwest" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -415,14 +440,14 @@
           <div class="filter">
             <div class="outside" style="background-color:teal"><div class="inside">West</div></div>
             <div class="trigger" data-trigger="west" data-style="demographic">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -436,14 +461,14 @@
               <span id="state-name"></span>
             </div></div>
             <div class="trigger" data-style="state">
-              <div class="label dem">
+              <div class="lbl dem">
                 
               </div>
               <div class="switcher">
                 <div class="switcher-button d">&larr;</div>
                 <div class="switcher-button r">&rarr;</div>
               </div>
-              <div class="label rep">
+              <div class="lbl rep">
 
               </div>
             </div>
@@ -453,11 +478,17 @@
       </div>
     </div>
     <div id="right">
-      <div id="chart_div" style="width:800px; height:500px;"></div>
+      <div id="chart_div" style="width:600px; height:400px;"></div>
       <div class="button-row">
-        <div class="button" id="remixer">
+        <button class="btn btn-large btn-success" id="remixer">
           Remix!
-        </div>
+        </button>
+        <button class="btn btn-large" id="reset">
+          Reset
+        </button>
+        <button class="btn btn-large" id="latest-news">
+          Latest News
+        </button>
       </div>
     </div>
     
@@ -491,7 +522,7 @@
   
   <!-- Ready to rock -->
   <script>
-    var originalData, filterSet = [], currentData;
+    var originalData, filterSet = [], currentData, originalResult;
     var rawData;
     
     $(document).on("ready", function(){
@@ -504,6 +535,7 @@
       
       // Apply a test filter
       currentData = simulate(applyFilters());
+      originalResult = currentData;
       render(currentData);
       
       $("#intro").show();
@@ -546,12 +578,12 @@
             if (filter) {
               var level = filter.delta;
               if (level !== 0) {
-                $(this).find(".label.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
-                $(this).find(".label.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
+                $(this).find(".lbl.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
+                $(this).find(".lbl.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
               }
             } else {
-              $(this).find(".label.dem").text("");
-              $(this).find(".label.rep").text("");
+              $(this).find(".lbl.dem").text("");
+              $(this).find(".lbl.rep").text("");
             }
           });
       })
@@ -568,30 +600,30 @@
       $("#rep_pv").text(Math.round(result.pvRep * 100) / 100 + "%")
       
       if (result.evDem > result.evRep) {
-        $("#dem_ev").parent().addClass("lead");
-        $("#rep_ev").parent().removeClass("lead");
+        $("#dem_ev").parent().addClass("ahead");
+        $("#rep_ev").parent().removeClass("ahead");
       }
       else {
-        $("#dem_ev").parent().removeClass("lead");
-        $("#rep_ev").parent().addClass("lead");
+        $("#dem_ev").parent().removeClass("ahead");
+        $("#rep_ev").parent().addClass("ahead");
       }
       
       if (result.wDem > result.wRep) {
-        $("#dem_wp").parent().addClass("lead");
-        $("#rep_wp").parent().removeClass("lead");
+        $("#dem_wp").parent().addClass("ahead");
+        $("#rep_wp").parent().removeClass("ahead");
       }
       else {
-        $("#dem_wp").parent().removeClass("lead");
-        $("#rep_wp").parent().addClass("lead");
+        $("#dem_wp").parent().removeClass("ahead");
+        $("#rep_wp").parent().addClass("ahead");
       }
       
       if (result.pvDem > result.pvRep) {
-        $("#dem_pv").parent().addClass("lead");
-        $("#rep_pv").parent().removeClass("lead");
+        $("#dem_pv").parent().addClass("ahead");
+        $("#rep_pv").parent().removeClass("ahead");
       }
       else {
-        $("#dem_pv").parent().removeClass("lead");
-        $("#rep_pv").parent().addClass("lead");
+        $("#dem_pv").parent().removeClass("ahead");
+        $("#rep_pv").parent().addClass("ahead");
       }
       
       drawMap();
@@ -712,12 +744,12 @@
           if (filter) {
             var level = filter.delta;
             if (level !== 0) {
-              $(this).find(".label.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
-              $(this).find(".label.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
+              $(this).find(".lbl.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
+              $(this).find(".lbl.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
             }
             else {
-              $(trigger).find(".label.dem").text("");
-              $(trigger).find(".label.rep").text("");
+              $(trigger).find(".lbl.dem").text("");
+              $(trigger).find(".lbl.rep").text("");
             }
             
           }
@@ -746,12 +778,12 @@
       if (filter) {
         var level = filter.delta;
         if (level !== 0) {
-          $(trigger).find(".label.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
-          $(trigger).find(".label.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
+          $(trigger).find(".lbl.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
+          $(trigger).find(".lbl.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
         }
         else {
-          $(trigger).find(".label.dem").text("");
-          $(trigger).find(".label.rep").text("");
+          $(trigger).find(".lbl.dem").text("");
+          $(trigger).find(".lbl.rep").text("");
         }
       }
     });
@@ -762,7 +794,6 @@
         method: "get",
         dataType: "jsonp",
         success: function(data) {
-          console.log("success", data);
           for (var s in data.list.story) {
             var story = data.list.story[s];
             var a = document.createElement("a");
@@ -782,13 +813,37 @@
     }
     
     $("#remixer").on("click", function(){
-      currentData = simulate(applyFilters(), 2500);
-      render(currentData);
+      if ($("#remixer").hasClass("disabled") == false) {
+        $("#remixer").addClass("disabled").text("simulating");
+        currentData = simulate(applyFilters(), 2500);
+        render(currentData);
+        $("#remixer").removeClass("disabled").text("Remix!");
+      }
+    });
+    
+    $("#reset").on("click", function(){
+      filterSet = [];
+      render(originalResult)
+      $(".filter-group").hide();
+      $(".lbl").text("");
+      $(".tab").removeClass("active");
+      $("#intro").show();
+    });
+    
+    $("#latest-news").on("click", function(){
+      $(".filter-group").hide();
+      $(".tab").removeClass("active");
+      $("#intro").show();
     });
     
     $("#span-about").on("click", function(){
-      $("#intro").hide();
+      $(".filter-group").hide();
       $("#about").show();
+    });
+    
+    $("#span-what").on("click", function(){
+      $(".filter-group").hide();
+      $("#what").show();
     });
   </script>
 </body>
