@@ -1,25 +1,24 @@
 var demographics = {
-  new_england: {
+  northeast: {
     ME: 1,
     NH: 1,
     VT: 1,
     MA: 1,
     RI: 1,
-    CT: 1
-  },
-  mid_atlantic: {
+    CT: 1,
     NY: 1,
     PA: 1,
+    DE: 1,
+    MD: 1,
+    DC: 1,
     NJ: 1
   },
-  east_north_central: {
+  midwest: {
     WI: 1,
     MI: 1,
     IL: 1,
     IN: 1,
     OH: 1,
-  },
-  west_north_central: {
     MO: 1,
     ND: 1,
     SD: 1,
@@ -28,30 +27,23 @@ var demographics = {
     MN: 1,
     IA: 1
   },
-  south_atlantic: {
-    DE: 1,
-    MD: 1,
-    DC: 1,
+  south: {
     VA: 1,
     WV: 1,
     NC: 1,
     SC: 1,
     GA: 1,
-    FL: 1
-  },
-  east_south_central: {
+    FL: 1,
     KY: 1,
     TN: 1,
     MS: 1,
-    AL: 1
-  },
-  west_south_central: {
-    OK: 1,
-    TX: 1,
+    AL: 1,
     AR: 1,
     LA: 1
   },
-  mountain: {
+  west: {
+    OK: 1,
+    TX: 1,
     ID: 1,
     MT: 1,
     WY: 1,
@@ -59,9 +51,7 @@ var demographics = {
     UT: 1,
     CO: 1,
     AZ: 1,
-    NM: 1
-  },
-  pacific: {
+    NM: 1,
     AK: 1,
     WA: 1,
     OR: 1,

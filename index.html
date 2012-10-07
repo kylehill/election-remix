@@ -3,91 +3,36 @@
 <head>
   <title>ElectionRemix.com</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
-  <style>
-    body, #container {
-      width:100%;
-      padding:0;
-      margin:0;
-      overflow:hidden;
-      font-family:'Open Sans', Helvetica, sans-serif;
-    }
-    #left {
-      width:400px;
-      height:100%;
-      display:inline-block;
-      vertical-align:top;
-    }
-    .logo {
-      text-align:center;
-      font-size:1.5em;
-      padding:30px;
-    }
-    .logo-tiny {
-      font-size:.9em;
-    }
-    .headline table {
-      background:white;
-      color:black;
-      width:100%;
-      text-align:center;
-      border-collapse:collapse;
-    }
-    .headline table td {
-      padding:6px;
-    }
-    .headline table thead {
-      font-size:.8em;
-    }
-    .headline table tbody td.name {
-      text-align:left;
-    }
-    .headline table .dem {
-      background-color:PaleTurquoise;
-      color:black;
-    }
-    .headline table .rep {
-      background-color:LightCoral;
-      color:black;
-    }
-    .well {
-      width:80px;
-    }
-    .well div {
-      background-color:#EEE;
-      border-radius:4px;
-      color:black;
-      padding:5px 0px;
-      box-shadow:#555 1px 1px;
-    }
-    .lead div {
-      background-color:LightGreen;
-      color:black;
-    }
-    #right {
-      display:inline-block;
-    }
-    #chart_div {
-      display:inline-block;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="container">
     <div id="left">
       <div class="logo">
-        ElectionRemix.com
-        <div class="logo-tiny">
-          <em>[logo goes here]</em>
-        </div>
+        <img src="logo.png" />
       </div>
       <div class="headline">
         <table>
           <thead>
             <tr>
               <td></td>
-              <td>Electoral College</td>
-              <td>Winning Percentage</td>
-              <td>Popular Vote</td>
+              <td>
+                <div class="outside">
+                  <div class="inside">
+                    Electoral College
+                  </div>
+                </div>
+              </td>
+              <td><div class="outside">
+                <div class="inside">
+                  Winning Percentage
+                </div>
+              </div></td>
+              <td><div class="outside">
+                <div class="inside">
+                  Popular Vote
+                </div>
+              </div></td>
             </tr>
           </thead>
           <tbody>
@@ -106,17 +51,431 @@
           </tbody>
         </table>
       </div>
+      <div id="tabs">
+        <div class="tab" data-tab="nationwide">Nationwide</div>
+        <div class="tab" data-tab="party">Party</div>
+        <div class="tab" data-tab="race">Race</div>
+        <div class="tab" data-tab="religion">Religion</div>
+        <div class="tab" data-tab="economics">Economics</div>
+        <div class="tab" data-tab="region">Region</div>
+      </div>
+      <div id="filters">
+        
+        <div class="filter-group" id="intro">
+          <p>
+            ElectionRemix is a way to project the outcome 2012 Presidential Election
+          </p>
+          <p>
+            Click on any state or on the tabs above to get access to the filters, and start tweaking! Click the "Remix" button to finish the projections. 
+          </p>
+          <p>
+            <span id="span-about">Who made this?</span>
+          </p>
+        </div>
+        
+        <div class="filter-group" id="about">
+          <p>
+            I'm Kyle Hill (
+              <a target="_blank" href="http://github.com/kylehill">GitHub</a>, 
+              <a target="_blank" href="http://twitter.com/kylehill">Twitter</a>, 
+              <a href="mailto:kylehill@gmail.com">Email</a>, 
+            ) and I slapped together ElectoralRemix for the 2012 Washington Post <a href="http://electionhackathon.com">
+            Election Hackathon</a>. It's pretty quick and rather dirty, but I'll can put some UX
+            spit-shine on it if there's any interest.
+          </p>
+          <p>
+            I <a href="http://kylemhill.wordpress.com" target="_blank">blogged</a> for a while about this project, 
+            and the source is up on <a href="http://github.com/kylehill/election-remix">GitHub</a>.
+          </p>
+          <p>
+            <span style="color:red">&lt;3</span>, Kyle
+          <p>
+        </div>
+        
+        <div class="filter-group" data-group="nationwide">
+          
+          <div class="filter">
+            <div class="outside"><div class="inside">Everyone!</div></div>
+            <div class="trigger" data-trigger="all" data-style="universal">
+              <div class="label dem">
+
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:red"><div class="inside">States voting for McCain in 2008</div></div>
+            <div class="trigger" data-trigger="mccain08" data-style="universal">
+              <div class="label dem">
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="filter">
+            <div class="outside" style="background-color:blue"><div class="inside">States voting for Obama in 2008</div></div>
+            <div class="trigger" data-trigger="obama08" data-style="universal">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="filter-group" data-group="party">
+          
+          <div class="filter">
+            <div class="outside"  style="background-color:lightcoral"><div class="inside">Registered Republicans</div></div>
+            <div class="trigger" data-trigger="reg_rep" data-style="demographic">
+              <div class="label dem">
+
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:paleturquoise"><div class="inside">Registered Democrats</div></div>
+            <div class="trigger" data-trigger="reg_dem" data-style="demographic">
+              <div class="label dem">
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="filter">
+            <div class="outside" style="background-color:lightgreen"><div class="inside">Independents</div></div>
+            <div class="trigger" data-trigger="reg_ind" data-style="demographic">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="filter-group" data-group="race">
+          
+          <div class="filter">
+            <div class="outside"  style="background-color:beige"><div class="inside">White</div></div>
+            <div class="trigger" data-trigger="white" data-style="demographic">
+              <div class="label dem">
+
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:brown"><div class="inside">African-American</div></div>
+            <div class="trigger" data-trigger="black" data-style="demographic">
+              <div class="label dem">
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="filter">
+            <div class="outside" style="background-color:tan"><div class="inside">Hispanic/Latino</div></div>
+            <div class="trigger" data-trigger="hispanic" data-style="demographic">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        
+        <div class="filter-group" data-group="religion">
+          
+          <div class="filter">
+            <div class="outside"  style="background-color:yellow"><div class="inside">Protestant</div></div>
+            <div class="trigger" data-trigger="protestant" data-style="demographic">
+              <div class="label dem">
+
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:orange"><div class="inside">Catholic</div></div>
+            <div class="trigger" data-trigger="catholic" data-style="demographic">
+              <div class="label dem">
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="filter">
+            <div class="outside" style="background-color:red"><div class="inside">Mormon</div></div>
+            <div class="trigger" data-trigger="mormon" data-style="demographic">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:steelblue"><div class="inside">Jewish</div></div>
+            <div class="trigger" data-trigger="judaism" data-style="demographic">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="filter-group" data-group="economics">
+          
+          <div class="filter">
+            <div class="outside"  style="background-color:black"><div class="inside">Per Capita Income</div></div>
+            <div class="trigger" data-trigger="per_capita" data-style="demographic">
+              <div class="label dem">
+
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:gray"><div class="inside">Poverty Rate</div></div>
+            <div class="trigger" data-trigger="poverty" data-style="demographic">
+              <div class="label dem">
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="filter">
+            <div class="outside" style="background-color:silver"><div class="inside">Unemployment Rate</div></div>
+            <div class="trigger" data-trigger="unemployment" data-style="demographic">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="filter-group" data-group="region">
+          
+          <div class="filter">
+            <div class="outside"  style="background-color:lime"><div class="inside">Northeast</div></div>
+            <div class="trigger" data-trigger="northeast" data-style="demographic">
+              <div class="label dem">
+
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:deepskyblue"><div class="inside">South</div></div>
+            <div class="trigger" data-trigger="south" data-style="demographic">
+              <div class="label dem">
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="filter">
+            <div class="outside" style="background-color:deeppink"><div class="inside">Midwest</div></div>
+            <div class="trigger" data-trigger="midwest" data-style="demographic">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter">
+            <div class="outside" style="background-color:teal"><div class="inside">West</div></div>
+            <div class="trigger" data-trigger="west" data-style="demographic">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="filter-group" id="highlight">
+          <div class="filter">
+            <div class="outside" style="background-color:black"><div class="inside">
+              <span id="state-name"></span>
+            </div></div>
+            <div class="trigger" data-style="state">
+              <div class="label dem">
+                
+              </div>
+              <div class="switcher">
+                <div class="switcher-button d">&larr;</div>
+                <div class="switcher-button r">&rarr;</div>
+              </div>
+              <div class="label rep">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
     <div id="right">
-      <div id="chart_div" style="width:900px; height:600px; border:solid 1px black;">
+      <div id="chart_div" style="width:800px; height:500px;"></div>
+      <div class="button-row">
+        <div class="button" id="remixer">
+          Remix!
+        </div>
+      </div>
     </div>
+    
+    
   </div>
   
   <!-- Load all the libraries -->
   <script src="libs/jquery-1.8.2.min.js"></script>
   <script src="libs/underscore-min.js"></script>
   <script src="libs/jstat-1.0.0.min.js"></script>
-  <script type='text/javascript' src='https://www.google.com/jsapi'></script>\
+  <script type='text/javascript' src='https://www.google.com/jsapi'></script>
   
   <!-- Load the data file -->
   <script>
@@ -154,8 +513,8 @@
       currentData = simulate(applyFilters());
       render(currentData);
       
-      //var newData = simulate(applyFilters());
-      //console.log("new data, projected", newData);
+      $("#intro").show();
+
     });
     
     var drawMap = function() {
@@ -166,19 +525,42 @@
           dataArray.push([state.name, Math.round(state.wDem / currentData.runs * 10000) / 100])
         }
       }
-      console.log(dataArray);
       var data = google.visualization.arrayToDataTable(dataArray);
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
       chart.draw(data, {
         region:"US", 
         resolution:"provinces",
         colorAxis: {
-          colors: ["#ff0000","#0000ff"]
-        }
+          colors: ["lightcoral","paleturquoise"]
+        },
+        legend: "none",
+        backgroundColor: "#eeeeee"
       });
       
       google.visualization.events.addListener(chart, 'regionClick', function(r){
+        $(".tab").removeClass("active");
         var state = r.region.split("-")[1];
+        var stateData = originalData[state];
+        $(".filter-group").hide();
+        $("#highlight").show();
+        $("#highlight").find(".trigger").data("trigger", state);
+        $("#state-name").text(stateData.name);
+        
+        $('#highlight .filter')
+          .each(function(){
+            var field = $(this).find(".trigger").data("trigger")
+            var filter = getStateFilter(field);
+            if (filter) {
+              var level = filter.delta;
+              if (level !== 0) {
+                $(this).find(".label.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
+                $(this).find(".label.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
+              }
+            } else {
+              $(this).find(".label.dem").text("");
+              $(this).find(".label.rep").text("");
+            }
+          });
       })
     }
     
@@ -218,32 +600,87 @@
         $("#dem_pv").parent().removeClass("lead");
         $("#rep_pv").parent().addClass("lead");
       }
+      
+      drawMap();
     }
     
     var addUniversalFilter = function(flag, vsDemDelta){
-      filterSet.push({type: "u", flag: flag, delta: vsDemDelta});
+      if (getUniversalFilter(flag) !== false) {
+        console.log()
+        _.each(filterSet, function(f){
+          if (f.type == "u" && f.flag == flag) {
+            f.delta += vsDemDelta;
+          }
+        });
+      }
+      else {
+        filterSet.push({type: "u", flag: flag, delta: vsDemDelta});
+      }
+      
+      return getUniversalFilter(flag);
     };
     
     var addDemoFilter = function(characteristic, vsDemDelta){
-      filterSet.push({type: "d", characteristic: characteristic, delta: vsDemDelta });
+      if (getDemoFilter(characteristic) !== false) {
+        _.each(filterSet, function(f){
+          if (f.type == "d" && f.characteristic == characteristic) {
+            f.delta += vsDemDelta;
+          }
+        });
+      }
+      else {
+        filterSet.push({type: "d", characteristic: characteristic, delta: vsDemDelta });
+      }
+      return getDemoFilter(characteristic);
     };
     
     var addStateFilter = function(state, vsDemDelta){
-      filterSet.push({type: "s", state: state, delta: vsDemDelta});
+      if (getStateFilter(state) !== false) {
+        _.each(filterSet, function(f){
+          if (f.type == "s" && f.state == state) {
+            f.delta += vsDemDelta;
+          }
+        });
+      }
+      else {
+        filterSet.push({type: "s", state: state, delta: vsDemDelta});
+      }
+      return getStateFilter(state);
     };
+    
+    var getUniversalFilter = function(flag) {
+      var filter = _.find(filterSet, function(f){
+        return (f.type == "u" && f.flag == flag);
+      });
+      return (filter || false);
+    }
+    
+    var getDemoFilter = function(characteristic) {
+      var filter = _.find(filterSet, function(f){
+        return (f.type == "d" && f.characteristic == characteristic);
+      });
+      return (filter || false);
+    }
+    
+    var getStateFilter = function(state) {
+      var filter = _.find(filterSet, function(f){
+        return (f.type == "s" && f.state == state);
+      });
+      return (filter || false);
+    }
     
     var applyFilters = function(){
       var currentData = JSON.parse(rawData);
       _.each(filterSet, function(f){
         switch (f.type) {
           case "u":
-            currentData = filters[f.flag](currentData, f.delta/2);
+            currentData = filters[f.flag](currentData, f.delta);
             break;
           case "s":
-            currentData = filters.state(currentData, f.state, f.delta/2);
+            currentData = filters.state(currentData, f.state, f.delta);
             break;
           case "d":
-            currentData = filters.demographics(currentData, f.characteristic, f.delta/2);
+            currentData = filters.demographics(currentData, f.characteristic, f.delta);
             break;
           default:
             break;
@@ -253,7 +690,88 @@
     };
     
     google.load('visualization', '1', {'packages': ['geochart']});
-    google.setOnLoadCallback(drawMap);
+    //google.setOnLoadCallback(drawMap);
+    
+    $(".tab").on("click", function(){
+      $(".tab").removeClass("active");
+      $(this).addClass("active");
+      $(".filter-group").hide();
+      $('.filter-group[data-group="' + $(this).data("tab") + '"]')
+        .show()
+        .find(".trigger")
+        .each(function(){
+          var field = $(this).data("trigger");
+          var style = $(this).data("style");
+          var filter;
+          switch(style) {
+            case "universal":
+              filter = getUniversalFilter(field);
+              break;
+            case "state":
+              filter = getStateFilter(field);
+              break;
+            case "demographic":
+              filter = getDemoFilter(field);
+              break;
+            default:
+              break;
+          }
+          if (filter) {
+            var level = filter.delta;
+            if (level !== 0) {
+              $(this).find(".label.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
+              $(this).find(".label.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
+            }
+            else {
+              $(trigger).find(".label.dem").text("");
+              $(trigger).find(".label.rep").text("");
+            }
+            
+          }
+        });
+    });
+    
+    $(".switcher-button").on("click", function(){
+      var delta = ($(this).hasClass("d") ? .5 : -.5)
+      var trigger = $(this).closest(".trigger");
+      var style = $(trigger).data("style");
+      var field = $(trigger).data("trigger");
+      var filter;
+      switch(style) {
+        case "universal":
+          filter = addUniversalFilter(field, delta);
+          break;
+        case "state":
+          filter = addStateFilter(field, delta);
+          break;
+        case "demographic":
+          filter = addDemoFilter(field, delta);
+          break;
+        default:
+          break;
+      }
+      if (filter) {
+        var level = filter.delta;
+        if (level !== 0) {
+          $(trigger).find(".label.dem").text("Obama " + (level > 0 ? "+" : "-") + Math.abs(level));
+          $(trigger).find(".label.rep").text("Romney " + (level > 0 ? "-" : "+") + Math.abs(level));
+        }
+        else {
+          $(trigger).find(".label.dem").text("");
+          $(trigger).find(".label.rep").text("");
+        }
+      }
+    });
+    
+    $("#remixer").on("click", function(){
+      currentData = simulate(applyFilters(), 2500);
+      render(currentData);
+    });
+    
+    $("#span-about").on("click", function(){
+      $("#intro").hide();
+      $("#about").show();
+    });
   </script>
 </body>
 </html>

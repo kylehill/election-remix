@@ -69,7 +69,7 @@ var simulate = function(data, runs) {
       projection.evDem !== projection.evRep ? projected.wRep++ : projected.tied++);
       
     if (iteration % 500 == 0) {
-      console.log((iteration/CONST_runs * 100) + "%")
+      $(".bar").css("width", iteration/CONST_runs * 100 + "%");
     }
   }
   

@@ -1,0 +1,186 @@
+body, #container {
+  width:100%;
+  padding:0;
+  margin:0;
+  overflow:hidden;
+  font-family:'Open Sans', Helvetica, sans-serif;
+  background-color:#eeeeee;
+}
+#left {
+  width:400px;
+  height:10000px;
+  float:left;
+  vertical-align:top;
+  background:white;
+  border-right:solid 2px #aaa;
+}
+#right {
+  height:10000px;
+  background:#eeeeee;
+}
+.logo {
+  text-align:center;
+  font-size:1.5em;
+  margin:0px auto;
+}
+.logo-tiny {
+  font-size:.9em;
+}
+.headline table {
+  background:white;
+  color:black;
+  width:100%;
+  text-align:center;
+  border-collapse:collapse;
+}
+.headline table td {
+  padding:6px;
+}
+.headline table thead {
+  font-size:.8em;
+}
+.headline table tbody td.name {
+  text-align:left;
+}
+.headline table .dem {
+  background-color:PaleTurquoise;
+  color:black;
+}
+.headline table .rep {
+  background-color:LightCoral;
+  color:white;
+}
+.well {
+  width:80px;
+}
+.well div {
+  background-color:#EEE;
+  border-radius:4px;
+  color:black;
+  padding:5px 0px;
+  box-shadow:#555 1px 1px;
+  height:20px;
+}
+.lead div {
+  background-color:LightGreen;
+  color:black;
+}
+#chart_div {
+  display:inline-block;
+  margin-left:20px;
+}
+.outside {
+  background:purple;
+  padding-left:4px;
+  padding-bottom:2px;
+}
+.inside {
+  background:white;
+  padding:2px 6px;
+}
+.filter {
+  margin:10px 15px;
+}
+.label {
+  width:132px;
+  padding:5px 10px;
+  display:inline-block;
+  height:22px;
+  vertical-align:top;
+}
+.trigger {
+  background-color:#aaa;
+  margin:0;
+  padding:0;
+}
+.trigger .rep {
+  background-color:lightcoral;
+  color:white;
+}
+.trigger .dem {
+  background-color:paleturquoise;
+  text-align:right;
+}
+.switcher-button {
+  width:15px;
+  vertical-align:top;
+  background:#ccc;
+  padding:2px 5px;
+  border:solid 1px #aaa;
+  color:black;
+  cursor:pointer;
+  display:inline-block;
+  box-shadow:#444 1px 1px;
+  margin-bottom:2px;
+  margin-top:1px;
+}
+.switcher {
+  display:inline-block;
+  background-color:#aaa;
+}
+.switcher-button.d {
+  background:paleturquoise;
+}
+.switcher-button.r {
+  background:lightcoral;
+  color:white;
+}
+.tab {
+  display:inline-block;
+  width:120px;
+  border-radius:4px;
+  border:solid 1px black;
+  font-size:.8em;
+  cursor:pointer;
+}
+.tab.active {
+  background-color:green;
+  color:white;
+}
+#tabs {
+  text-align:center;
+  display:inline-block;
+}
+
+.filter-group {
+  display:none;
+}
+
+.highlight-cell {
+  font-size: .8em;
+  border:solid 1px #ddd;
+  width:120px;
+  color:#666;
+  border-radius:5px;
+}
+.hightlight-cell span.dp {
+  color:black;
+}
+
+.button-row {
+  text-align:center;
+  margin:20px 0px;
+}
+
+.button-row .button {
+  display:inline-block;
+  height:60px;
+  width:150px;
+  line-height:60px;
+  margin:0px 20px;
+  font-size:1.4em;
+  color:white;
+  background-color:purple;
+  border:solid 2px white;
+  border-radius:15px;
+  cursor:pointer;
+}
+
+#intro, #about {
+  padding:10px;
+}
+
+#span-about {
+  color:blue;
+  cursor:pointer;
+}

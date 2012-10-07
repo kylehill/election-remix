@@ -27,7 +27,7 @@ var filters = {
     data.NE.districts[1] = this.sticker(data.NE.districts[1], vsDemDelta);
     return data;
   },
-  
+
   demographics: function(data, characteristic, vsDemDelta) {
     for (var state in data) {
       var modDelta = vsDemDelta * (data[state].demo[characteristic] || 0);
