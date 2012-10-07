@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>ElectionRemix.com</title>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -63,23 +63,16 @@
         
         <div class="filter-group" id="intro">
           <p>
-            ElectionRemix is a way to project the outcome 2012 Presidential Election
-          </p>
-          <p>
-            Click on any state or on the tabs above to get access to the filters, and start tweaking! Click the "Remix" button to finish the projections. 
-          </p>
-          <p>
             <span id="span-about">Who made this?</span>
           </p>
+          <div id="npr">
+                      <strong>Latest news from NPR:</strong>
+          </div>
         </div>
         
         <div class="filter-group" id="about">
           <p>
-            I'm Kyle Hill (
-              <a target="_blank" href="http://github.com/kylehill">GitHub</a>, 
-              <a target="_blank" href="http://twitter.com/kylehill">Twitter</a>, 
-              <a href="mailto:kylehill@gmail.com">Email</a>, 
-            ) and I slapped together ElectoralRemix for the 2012 Washington Post <a href="http://electionhackathon.com">
+            I'm Kyle Hill (<a target="_blank" href="http://github.com/kylehill">GitHub</a>, <a target="_blank" href="http://twitter.com/kylehill">Twitter</a>, <a href="mailto:kylehill@gmail.com">Email</a>.) and I slapped together ElectoralRemix for the 2012 Washington Post <a href="http://electionhackathon.com">
             Election Hackathon</a>. It's pretty quick and rather dirty, but I'll can put some UX
             spit-shine on it if there's any interest.
           </p>
@@ -514,7 +507,7 @@
       render(currentData);
       
       $("#intro").show();
-
+      getNPR();
     });
     
     var drawMap = function() {
@@ -762,6 +755,31 @@
         }
       }
     });
+    
+    var getNPR = function() {
+      $.ajax({
+        url: "http://api.npr.org/query?id=139544303&fields=title,teaser&dateType=story&output=JSON&numResults=10&apiKey=MDEwMjMyMTc5MDEzNDk1ODg0MzE2MDdmYQ001",
+        method: "get",
+        dataType: "jsonp",
+        success: function(data) {
+          console.log("success", data);
+          for (var s in data.list.story) {
+            var story = data.list.story[s];
+            var a = document.createElement("a");
+            $(a)
+              .attr("href", story.link[2]["$text"])
+              .attr("target", "_blank")
+              .text(story.title["$text"]);
+            var div = document.createElement("div");
+            var t = document.createElement("div");
+            $(t).text(story.teaser["$text"])
+            $(div).addClass("npr-story").append(a).append(t);
+            
+            $("#npr").append(div);
+          }
+        }
+      });
+    }
     
     $("#remixer").on("click", function(){
       currentData = simulate(applyFilters(), 2500);

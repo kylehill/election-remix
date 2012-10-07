@@ -184,3 +184,11 @@ body, #container {
   color:blue;
   cursor:pointer;
 }
+
+#npr {
+  font-size:.75em;
+}
+
+.npr-story {
+  margin-bottom:5px;
+}
