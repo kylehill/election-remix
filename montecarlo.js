@@ -1,5 +1,5 @@
 var simulate = function(data, runs) {
-  var CONST_runs = runs || 2000;
+  var CONST_runs = runs || 1000;
   
   var projected = {
     evDem: 0,
@@ -11,7 +11,7 @@ var simulate = function(data, runs) {
   };
   
   for (var state in data) {
-    projected.states[data[state].initials] = { wDem: 0, wRep: 0, vsDem: data[state].dem, vsRep: data[state].rep };
+    projected.states[data[state].initials] = { name: data[state].name, init: "US-" + data[state].initials, wDem: 0, wRep: 0, vsDem: data[state].dem, vsRep: data[state].rep, pvDem: data[state].dem * data[state].population, pvRep: data[state].rep * data[state].population };
     
     for (var district in data[state].districts) {
       projected.states[data[state].districts[district].initials] = { wDem: 0, wRep: 0 };
@@ -74,11 +74,14 @@ var simulate = function(data, runs) {
   }
   
   return { 
+    runs: CONST_runs,
     evDem: (projected.evDem / CONST_runs), 
     evRep: (projected.evRep / CONST_runs), 
     wDem: (projected.wDem / CONST_runs), 
     wRep: (projected.wRep / CONST_runs), 
     wTied: (projected.tied / CONST_runs),
+    pvDem: (_.reduce(projected.states, function(m, s){ return (s.pvDem ? s.pvDem + m : m); }, 0) / 309),
+    pvRep: (_.reduce(projected.states, function(m, s){ return (s.pvRep ? s.pvRep + m : m); }, 0) / 309),
     states: projected.states
   };
 }

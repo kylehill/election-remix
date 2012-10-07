@@ -49,3 +49,10 @@ var applyDemographics = function(data, demographics) {
   }
   return data;
 };
+
+var applyPopulation = function(data, population) {
+  for (var state in population) {
+    data[state].population = population[state];
+  }
+  return data;
+}

@@ -2,14 +2,121 @@
 <html>
 <head>
   <title>ElectionRemix.com</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+  <style>
+    body, #container {
+      width:100%;
+      padding:0;
+      margin:0;
+      overflow:hidden;
+      font-family:'Open Sans', Helvetica, sans-serif;
+    }
+    #left {
+      width:400px;
+      height:100%;
+      display:inline-block;
+      vertical-align:top;
+    }
+    .logo {
+      text-align:center;
+      font-size:1.5em;
+      padding:30px;
+    }
+    .logo-tiny {
+      font-size:.9em;
+    }
+    .headline table {
+      background:white;
+      color:black;
+      width:100%;
+      text-align:center;
+      border-collapse:collapse;
+    }
+    .headline table td {
+      padding:6px;
+    }
+    .headline table thead {
+      font-size:.8em;
+    }
+    .headline table tbody td.name {
+      text-align:left;
+    }
+    .headline table .dem {
+      background-color:PaleTurquoise;
+      color:black;
+    }
+    .headline table .rep {
+      background-color:LightCoral;
+      color:black;
+    }
+    .well {
+      width:80px;
+    }
+    .well div {
+      background-color:#EEE;
+      border-radius:4px;
+      color:black;
+      padding:5px 0px;
+      box-shadow:#555 1px 1px;
+    }
+    .lead div {
+      background-color:LightGreen;
+      color:black;
+    }
+    #right {
+      display:inline-block;
+    }
+    #chart_div {
+      display:inline-block;
+    }
+  </style>
 </head>
 <body>
-  Hello world
+  <div id="container">
+    <div id="left">
+      <div class="logo">
+        ElectionRemix.com
+        <div class="logo-tiny">
+          <em>[logo goes here]</em>
+        </div>
+      </div>
+      <div class="headline">
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <td>Electoral College</td>
+              <td>Winning Percentage</td>
+              <td>Popular Vote</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="dem">
+              <td class="name">Obama</td>
+              <td class="well"><div id="dem_ev"></div></td>
+              <td class="well"><div id="dem_wp"></div></td>
+              <td class="well"><div id="dem_pv"></div></td>
+            </tr>
+            <tr class="rep">
+              <td class="name">Romney</td>
+              <td class="well"><div id="rep_ev"></div></td>
+              <td class="well"><div id="rep_wp"></div></td>
+              <td class="well"><div id="rep_pv"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="right">
+      <div id="chart_div" style="width:900px; height:600px; border:solid 1px black;">
+    </div>
+  </div>
   
   <!-- Load all the libraries -->
   <script src="libs/jquery-1.8.2.min.js"></script>
   <script src="libs/underscore-min.js"></script>
   <script src="libs/jstat-1.0.0.min.js"></script>
+  <script type='text/javascript' src='https://www.google.com/jsapi'></script>\
   
   <!-- Load the data file -->
   <script>
@@ -22,34 +129,96 @@
     }
   </script>
   <script src="http://elections.nytimes.com/2012/cards/38-fivethirtyeight-ccol-top.js"></script>
+  
+  <!-- Load the code files -->
   <script src="data.js"></script>
   <script src="demographics.js"></script>
   <script src="filters.js"></script>
+  <script src="population.js"></script>
   <script src="montecarlo.js"></script>
   
   <!-- Ready to rock -->
   <script>
-    var originalData, filterSet = [];
+    var originalData, filterSet = [], currentData;
     var rawData;
     
     $(document).on("ready", function(){
+      
       // Massage the data
       originalData = massage(eg2012.data);
       originalData = applyDemographics(originalData, demographics);
-      
+      originalData = applyPopulation(originalData, population);
       rawData = JSON.stringify(originalData);
       
-      // Make a starter projection
-      var projected = simulate(originalData);
-      console.log("original data, projected", projected);
-      
       // Apply a test filter
-      addDemoFilter("unemployment", 10);
-      applyFilters();
+      currentData = simulate(applyFilters());
+      render(currentData);
       
-      var newData = simulate(applyFilters());
-      console.log("new data, projected", newData);
+      //var newData = simulate(applyFilters());
+      //console.log("new data, projected", newData);
     });
+    
+    var drawMap = function() {
+      var dataArray = [['State', 'Obama Win %']];
+      for (var s in currentData.states) {
+        var state = currentData.states[s];
+        if (state.init) {
+          dataArray.push([state.name, Math.round(state.wDem / currentData.runs * 10000) / 100])
+        }
+      }
+      console.log(dataArray);
+      var data = google.visualization.arrayToDataTable(dataArray);
+      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+      chart.draw(data, {
+        region:"US", 
+        resolution:"provinces",
+        colorAxis: {
+          colors: ["#ff0000","#0000ff"]
+        }
+      });
+      
+      google.visualization.events.addListener(chart, 'regionClick', function(r){
+        var state = r.region.split("-")[1];
+      })
+    }
+    
+    var render = function(result) {
+      $("#dem_ev").text(Math.round(result.evDem * 100) / 100)
+      $("#rep_ev").text(Math.round(result.evRep * 100) / 100)
+      
+      $("#dem_wp").text(Math.round(result.wDem * 10000) / 100 + "%")
+      $("#rep_wp").text(Math.round(result.wRep * 10000) / 100 + "%")
+      
+      $("#dem_pv").text(Math.round(result.pvDem * 100) / 100 + "%")
+      $("#rep_pv").text(Math.round(result.pvRep * 100) / 100 + "%")
+      
+      if (result.evDem > result.evRep) {
+        $("#dem_ev").parent().addClass("lead");
+        $("#rep_ev").parent().removeClass("lead");
+      }
+      else {
+        $("#dem_ev").parent().removeClass("lead");
+        $("#rep_ev").parent().addClass("lead");
+      }
+      
+      if (result.wDem > result.wRep) {
+        $("#dem_wp").parent().addClass("lead");
+        $("#rep_wp").parent().removeClass("lead");
+      }
+      else {
+        $("#dem_wp").parent().removeClass("lead");
+        $("#rep_wp").parent().addClass("lead");
+      }
+      
+      if (result.pvDem > result.pvRep) {
+        $("#dem_pv").parent().addClass("lead");
+        $("#rep_pv").parent().removeClass("lead");
+      }
+      else {
+        $("#dem_pv").parent().removeClass("lead");
+        $("#rep_pv").parent().addClass("lead");
+      }
+    }
     
     var addUniversalFilter = function(flag, vsDemDelta){
       filterSet.push({type: "u", flag: flag, delta: vsDemDelta});
@@ -82,6 +251,9 @@
       });
       return currentData;
     };
+    
+    google.load('visualization', '1', {'packages': ['geochart']});
+    google.setOnLoadCallback(drawMap);
   </script>
 </body>
 </html>
